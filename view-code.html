@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>View Code || Garuda Javascript 2</title>
+	<script type="text/javascript" src="https://www.cdn.lamhotsimamora.com/garuda2/"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<body id="garuda_app">
+
+	<div class="container">
+		<br><br>
+		<div class="jumbotron">
+			<pre id="show">
+				
+			</pre>
+		</div>
+		
+	</div>
+	
+</body>
+<script type="text/javascript">
+	_documentReady($=>{
+
+		$show = __({
+			el:"show"
+		});
+
+		$app = __({
+			url:"app.js",
+			method:"get"
+		});
+		$component = __({
+			url:"component.js",
+			method:"get"
+		});
+		$event = __({
+			url:"event.js",
+			method:"get"
+		});
+
+		var all;
+		$component.request($a=>{
+			 all = $a;
+			 $app.request($b=>{
+				all = $a + $b;
+				$event.request($c=>{
+					$show.setContent(all + $c);
+				});
+			 });
+		});
+	});
+</script>
+</html>
